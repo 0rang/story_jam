@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Rock_Volcanic_A_Basecolor
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 9ffff4db623f26d4986ce44d12d8f813, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0914fc6c35312c54991b53668a3ac8a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Wood_Planks_B_Basecolor
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 5afcfbbc56406fd47a8bb6e1a3da98dd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f8a790a001e5e242b14a83bbe280025, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
