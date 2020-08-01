@@ -28,13 +28,6 @@ public class PlayerController : MonoBehaviour
 
         if (inputHorizontal != 0 || inputVertical != 0)
         {
-            // theTransform.position.Set(theTransform.position.x + speed * inputHorizontal * (movingOnBothAxes ? speedDiagComponent : 1),
-            // theTransform.position.y + speed * inputVertical * (movingOnBothAxes ? speedDiagComponent : 1),
-            // theTransform.position.z);
-
-            // theTransform.position.Set(theTransform.position.x + 5, theTransform.position.y + 5,
-            // theTransform.position.z);
-
             theTransform.position = new Vector3(theTransform.position.x + speed * inputHorizontal * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
             theTransform.position.y + speed * inputVertical * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
             theTransform.position.z);
