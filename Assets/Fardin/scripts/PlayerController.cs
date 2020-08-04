@@ -9,17 +9,26 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private float speedDiagComponent;
 
-    protected Vector2 velocity;
+    public bool LockedInput { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
+        LockedInput = false;
         theTransform = gameObject.GetComponent<Transform>();
         speedDiagComponent = Mathf.Sqrt(0.5f);
     }
 
     // Update is called once per frame
     void Update()
+    {
+        if (!LockedInput)
+        {
+            Move();
+        }
+    }
+
+    void Move()
     {
         float inputHorizontal = Input.GetAxisRaw("Horizontal");
         float inputVertical = Input.GetAxisRaw("Vertical");
@@ -32,15 +41,5 @@ public class PlayerController : MonoBehaviour
             theTransform.position.y + speed * inputVertical * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
             theTransform.position.z);
         }
-    }
-
-    void FixedUpdate()
-    {
-
-    }
-
-    void move()
-    {
-
     }
 }
