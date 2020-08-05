@@ -35,12 +35,13 @@ public class PlayerController : MonoBehaviour
     {
         float inputHorizontal = Input.GetAxisRaw("Horizontal");
         float inputVertical = Input.GetAxisRaw("Vertical");
-        Direction = new Vector2(inputHorizontal, inputVertical);
 
         bool movingOnBothAxes = inputHorizontal * inputVertical != 0;
 
         if (inputHorizontal != 0 || inputVertical != 0)
         {
+            Direction = new Vector2(inputHorizontal, inputVertical);
+
             theTransform.position = new Vector3(theTransform.position.x + speed * inputHorizontal * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
             theTransform.position.y + speed * inputVertical * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
             theTransform.position.z);
