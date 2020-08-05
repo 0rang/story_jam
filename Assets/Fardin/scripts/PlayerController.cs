@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Transform theTransform;
+    private Transform theTransform;
+
+    //unit vector2 that'll be updated with the player's direction input
+    public Vector2 Direction { get; set; }
 
     public float speed;
     private float speedDiagComponent;
@@ -37,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
         if (inputHorizontal != 0 || inputVertical != 0)
         {
+            Direction = new Vector2(inputHorizontal, inputVertical);
+
             theTransform.position = new Vector3(theTransform.position.x + speed * inputHorizontal * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
             theTransform.position.y + speed * inputVertical * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
             theTransform.position.z);
