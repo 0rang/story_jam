@@ -5,6 +5,7 @@ using UnityEngine;
 public class AxeHitbox : MonoBehaviour
 {
     public PlayerController player;
+    private TarenCombat taren;
 
     Transform theTransform;
     public float rotationSpeed;
@@ -13,19 +14,23 @@ public class AxeHitbox : MonoBehaviour
     private float initRotation;
     private float totalRotation;
     private float initTime;
+
     // Start is called before the first frame update
     void Start()
     {
         theTransform = gameObject.GetComponent<Transform>();
         player = gameObject.GetComponentInParent<PlayerController>();
         initTime = Time.time;
+        player.LockedInput = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Time.time > initTime + startupLag)
         {
+
             float rotateSizeThisframe = rotationSpeed * Time.deltaTime;
 
             totalRotation += rotateSizeThisframe;
@@ -39,5 +44,11 @@ public class AxeHitbox : MonoBehaviour
 
         }
 
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("Axe Trigger Entered");
+        GameObject.Destroy(other.collider.gameObject);
     }
 }

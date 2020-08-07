@@ -21,10 +21,10 @@ public class PlayerController : MonoBehaviour
     {
         LockedInput = false;
         //player_rigidbody = GetComponent<Rigidbody2D>();
-/*        if (player_rigidbody == null)
-        {
-            Debug.LogError("oh god no rigidbody");
-        }*/
+        /*        if (player_rigidbody == null)
+                {
+                    Debug.LogError("oh god no rigidbody");
+                }*/
         theTransform = gameObject.GetComponent<Transform>();
         colliderChan = GetComponent<BoxCollider2D>();
         if (!colliderChan)
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        
+
         float inputHorizontal = Input.GetAxisRaw("Horizontal");
         float inputVertical = Input.GetAxisRaw("Vertical");
 
@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
         if (inputHorizontal != 0 || inputVertical != 0)
         {
+            Debug.Log("SHould be moving!!!");
             Vector2 current_velocity = new Vector2(
                 speed * inputHorizontal * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
                 speed * inputVertical * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime);
@@ -64,10 +65,11 @@ public class PlayerController : MonoBehaviour
 
             if (inputHorizontal != 0)//transform.scale.x/2
             {
-                for (int Count = 0;Count<3;Count++)
+                for (int Count = 0; Count < 3; Count++)
                 {
-                    Vector2 HorizontalOffset = new Vector2(theTransform.position.x +  theTransform.localScale.x * colliderChan.size.x / 2 * inputHorizontal,
-                                    theTransform.position.y + (Count - 1)* theTransform.localScale.y * colliderChan.size.y / 2);
+
+                    Vector2 HorizontalOffset = new Vector2(theTransform.position.x + theTransform.localScale.x * colliderChan.size.x / 2 * inputHorizontal,
+                                    theTransform.position.y + (Count - 1) * theTransform.localScale.y * colliderChan.size.y / 2);
                     RaycastHit2D raybois = Physics2D.Raycast(HorizontalOffset, Vector2.right * inputHorizontal,
                         speed * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime);
                     if (raybois.collider)
@@ -75,23 +77,24 @@ public class PlayerController : MonoBehaviour
                         canMoveHorizontal = raybois.collider.gameObject.layer == 2;
                         if (!canMoveHorizontal)
                         {
+                            Debug.Log("we hit something: " + raybois.collider.name);
                             break;
                         }
                     }
 
                 }
 
-/*                Vector2 HorizontalOffset = new Vector2(theTransform.position.x + theTransform.localScale.x*colliderChan.size.x/2 * inputHorizontal,
-                                                        theTransform.position.y);
-                RaycastHit2D raybois = Physics2D.Raycast(HorizontalOffset, Vector2.right * inputHorizontal,
-                    speed * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime);
+                /*                Vector2 HorizontalOffset = new Vector2(theTransform.position.x + theTransform.localScale.x*colliderChan.size.x/2 * inputHorizontal,
+                                                                        theTransform.position.y);
+                                RaycastHit2D raybois = Physics2D.Raycast(HorizontalOffset, Vector2.right * inputHorizontal,
+                                    speed * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime);
 
-                if (raybois.collider)
-                {
-                    canMoveHorizontal = raybois.collider.gameObject.layer == 2;
-                    Debug.Log("Found Horizontal Collider owo at " + raybois.collider.gameObject.name);
-                }
-                else { Debug.Log("Not hit horizontal"); }*/
+                                if (raybois.collider)
+                                {
+                                    canMoveHorizontal = raybois.collider.gameObject.layer == 2;
+                                    Debug.Log("Found Horizontal Collider owo at " + raybois.collider.gameObject.name);
+                                }
+                                else { Debug.Log("Not hit horizontal"); }*/
             }
 
             if (inputVertical != 0)
@@ -126,11 +129,11 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            theTransform.position = new Vector3(theTransform.position.x + (canMoveHorizontal?1:0)*speed * inputHorizontal * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
+            theTransform.position = new Vector3(theTransform.position.x + (canMoveHorizontal ? 1 : 0) * speed * inputHorizontal * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
             theTransform.position.y + (canMoveVertical ? 1 : 0) * speed * inputVertical * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
             theTransform.position.z);
 
-            
+
         }
 
     }
