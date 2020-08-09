@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelData : MonoBehaviour
 {
-    //was originally creates to hold static values for a level
+    //was originally created to hold static values for a level
     //might use it idk
 
 }
