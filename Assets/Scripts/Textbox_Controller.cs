@@ -11,6 +11,7 @@ class Textbox_Controller : MonoBehaviour
     static public int textSize;
     static public TextAsset script;
     static private string[] scriptText;
+    static public bool isClosing;
     //static public string nameTag;
     //static public string portrait;
 
@@ -18,6 +19,7 @@ class Textbox_Controller : MonoBehaviour
     void Awake()
     {
         instance = this;
+        isClosing = false;
         text = new string[50];
         script = Resources.Load<TextAsset>("Script/Test_Script");
         //scriptText = script.text.Split("\n"[0]);
@@ -32,20 +34,7 @@ class Textbox_Controller : MonoBehaviour
         if (textSize == 50) { return; }
         Debug.Log("New Text added");
         text[textSize] = inputText;
-
-        /*
-        string[] newString = inputText.Split('\t');
-        text[textSize] = newString[newString.Length - 1];
-        if (newString.Length == 3)
-        {
-            nameTag = (newString[0][0] != '0') ? newString[0] : null;
-
-        }
-        else
-        {
-            nameTag = null;
-        }
-        */
+        EventHandler.isBusy = true;
         textSize++;
         Debug.Log(text);
     }

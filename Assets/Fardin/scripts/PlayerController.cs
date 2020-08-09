@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!LockedInput)
+        if (!LockedInput && !EventHandler.isBusy)
         {
             Move();
         }
@@ -68,59 +68,56 @@ public class PlayerController : MonoBehaviour
                 {
                     Vector2 HorizontalOffset = new Vector2(theTransform.position.x +  theTransform.localScale.x * colliderChan.size.x / 2 * inputHorizontal,
                                     theTransform.position.y + (Count - 1)* theTransform.localScale.y * colliderChan.size.y / 2);
-                    RaycastHit2D raybois = Physics2D.Raycast(HorizontalOffset, Vector2.right * inputHorizontal,
+                    RaycastHit2D[] raybois = Physics2D.RaycastAll (HorizontalOffset, Vector2.right * inputHorizontal,
                         speed * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime);
-                    if (raybois.collider)
+                    foreach(RaycastHit2D rayboi in raybois)
                     {
-                        canMoveHorizontal = raybois.collider.gameObject.layer == 2;
-                        if (!canMoveHorizontal)
+                        if (rayboi.collider)
                         {
-                            break;
+                            canMoveHorizontal = rayboi.collider.gameObject.layer == 2 || rayboi.collider.isTrigger;
+                            if (!canMoveHorizontal)
+                            {
+                                break;
+                            }
                         }
                     }
+                    if (!canMoveHorizontal)
+                    {
+                        break;
+                    }
+
 
                 }
 
-/*                Vector2 HorizontalOffset = new Vector2(theTransform.position.x + theTransform.localScale.x*colliderChan.size.x/2 * inputHorizontal,
-                                                        theTransform.position.y);
-                RaycastHit2D raybois = Physics2D.Raycast(HorizontalOffset, Vector2.right * inputHorizontal,
-                    speed * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime);
-
-                if (raybois.collider)
-                {
-                    canMoveHorizontal = raybois.collider.gameObject.layer == 2;
-                    Debug.Log("Found Horizontal Collider owo at " + raybois.collider.gameObject.name);
-                }
-                else { Debug.Log("Not hit horizontal"); }*/
             }
 
             if (inputVertical != 0)
             {
-                /*                Vector2 VerticalOffset = new Vector2(theTransform.position.x, theTransform.position.y + theTransform.localScale.y*colliderChan.size.y / 2 * inputVertical);
-                                RaycastHit2D raybois = Physics2D.Raycast(VerticalOffset, Vector2.up * inputVertical,
-                                    speed * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime);
-                                if (raybois.collider)
-                                {
-                                    canMoveVertical = raybois.collider.gameObject.layer == 2;
-                                    Debug.Log("Found vertical Collider uwu");
-                                }*/
 
                 for (int Count = 0; Count < 3; Count++)
                 {
-                    /*Vector2 HorizontalOffset = new Vector2(theTransform.position.x + theTransform.localScale.x * colliderChan.size.x / 2 * inputHorizontal,
-                                    theTransform.position.y + (Count - 1) * theTransform.localScale.y * colliderChan.size.y / 2);*/
+                                   
                     Vector2 VerticalOffset = new Vector2(theTransform.position.x + (Count - 1) * theTransform.localScale.x * colliderChan.size.x / 2,
                                         theTransform.position.y + theTransform.localScale.y * colliderChan.size.y / 2 * inputVertical);
-                    RaycastHit2D raybois = Physics2D.Raycast(VerticalOffset, Vector2.up * inputVertical,
+                    RaycastHit2D[] raybois = Physics2D.RaycastAll(VerticalOffset, Vector2.up * inputVertical,
                                     speed * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime);
-                    if (raybois.collider)
+                    foreach(RaycastHit2D rayboi in raybois)
                     {
-                        canMoveVertical = raybois.collider.gameObject.layer == 2;
-                        if (!canMoveVertical)
+                        if (rayboi.collider)
                         {
-                            break;
+                            canMoveVertical = rayboi.collider.gameObject.layer == 2 || rayboi.collider.isTrigger;
+                            if (!canMoveVertical)
+                            {
+                                break;
+                            }
                         }
+
                     }
+                    if (!canMoveVertical)
+                    {
+                        break;
+                    }
+
 
                 }
             }

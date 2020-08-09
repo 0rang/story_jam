@@ -64,6 +64,8 @@ public class Window_Textbox : MonoBehaviour
                 {
                     textComponent.gameObject.SetActive(false);
                     background.gameObject.SetActive(false);
+                    EventHandler.isBusy = false;
+                    Textbox_Controller.isClosing = true;
                     
                 }
                 ContinueButton.gameObject.SetActive(false);
@@ -115,6 +117,10 @@ public class Window_Textbox : MonoBehaviour
                 Face.gameObject.SetActive(true);
             }
 
+        }
+        else
+        {
+            Textbox_Controller.isClosing = false;
         }
     }
 }
