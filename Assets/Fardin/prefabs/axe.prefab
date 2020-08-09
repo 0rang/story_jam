@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7206975703400402088}
   - component: {fileID: 7206975703400402091}
-  - component: {fileID: 7206975703400402090}
   - component: {fileID: 7206975703400402093}
-  m_Layer: 0
+  - component: {fileID: -8369470064749686789}
+  m_Layer: 9
   m_Name: axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,22 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &7206975703400402090
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7206975703400402089}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.11}
-  m_Size: {x: 0.54, y: 1.61}
-  m_Direction: 0
 --- !u!114 &7206975703400402093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +96,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6a7ef290070c94592e246974ba485d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  rotationSpeed: 90
-  startupLag: 0
+  rotationSpeed: 900
+  startupLag: 0.5
+  hitboxSize: {x: 0.48, y: 1.09}
+--- !u!61 &-8369470064749686789
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7206975703400402089}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.48, y: 1.09}
+    newSize: {x: 0.48, y: 1.09}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.48, y: 1.09}
+  m_EdgeRadius: 0
