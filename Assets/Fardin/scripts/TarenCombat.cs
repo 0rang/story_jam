@@ -22,9 +22,10 @@ public class TarenCombat : PlayerCombat
     protected override void Attack()
     {
         Debug.Log("Attacking");
-        AxeHitbox newAxe = Instantiate(axe, axeSpawnLoc, Quaternion.identity);
-        newAxe.transform.parent = gameObject.transform;
+        AxeHitbox newAxe = Instantiate(axe, gameObject.transform);
+        newAxe.transform.position += axeSpawnLoc;
         newAxe.transform.RotateAround(newAxe.transform.position, Vector3.forward, 270);
+
 
 
     }
