@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CharacterName
+{
+    TAREN,
+    FERREK,
+    AISHI,
+    TEPRIS
+}
+
 public abstract class PlayerCombat : MonoBehaviour
 {
     private PlayerController moveInfo;
-    public bool LockedAttack { get; set; }
+    public bool LockedAttack;
+
+    public CharacterName ThisCharacter { get; set; }
 
     private float characterHealth;
 

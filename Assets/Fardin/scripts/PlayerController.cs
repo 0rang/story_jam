@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
 
         if (inputHorizontal != 0 || inputVertical != 0)
         {
-            Debug.Log("SHould be moving!!!");
             Vector2 current_velocity = new Vector2(
                 speed * inputHorizontal * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime,
                 speed * inputVertical * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime);
@@ -67,11 +66,11 @@ public class PlayerController : MonoBehaviour
             {
                 for (int Count = 0; Count < 3; Count++)
                 {
-                    Vector2 HorizontalOffset = new Vector2(theTransform.position.x +  theTransform.localScale.x * colliderChan.size.x / 2 * inputHorizontal,
-                                    theTransform.position.y + (Count - 1)* theTransform.localScale.y * colliderChan.size.y / 2);
-                    RaycastHit2D[] raybois = Physics2D.RaycastAll (HorizontalOffset, Vector2.right * inputHorizontal,
+                    Vector2 HorizontalOffset = new Vector2(theTransform.position.x + theTransform.localScale.x * colliderChan.size.x / 2 * inputHorizontal,
+                                    theTransform.position.y + (Count - 1) * theTransform.localScale.y * colliderChan.size.y / 2);
+                    RaycastHit2D[] raybois = Physics2D.RaycastAll(HorizontalOffset, Vector2.right * inputHorizontal,
                         speed * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime);
-                    foreach(RaycastHit2D rayboi in raybois)
+                    foreach (RaycastHit2D rayboi in raybois)
                     {
                         if (rayboi.collider)
                         {
@@ -84,6 +83,7 @@ public class PlayerController : MonoBehaviour
                     }
                     if (!canMoveHorizontal)
                     {
+                        Debug.Log("Horizontal movement blocked");
                         break;
                     }
 
@@ -97,12 +97,12 @@ public class PlayerController : MonoBehaviour
 
                 for (int Count = 0; Count < 3; Count++)
                 {
-                                   
+
                     Vector2 VerticalOffset = new Vector2(theTransform.position.x + (Count - 1) * theTransform.localScale.x * colliderChan.size.x / 2,
                                         theTransform.position.y + theTransform.localScale.y * colliderChan.size.y / 2 * inputVertical);
                     RaycastHit2D[] raybois = Physics2D.RaycastAll(VerticalOffset, Vector2.up * inputVertical,
                                     speed * (movingOnBothAxes ? speedDiagComponent : 1) * Time.deltaTime);
-                    foreach(RaycastHit2D rayboi in raybois)
+                    foreach (RaycastHit2D rayboi in raybois)
                     {
                         if (rayboi.collider)
                         {
@@ -116,6 +116,7 @@ public class PlayerController : MonoBehaviour
                     }
                     if (!canMoveVertical)
                     {
+                        Debug.Log("Vertical movement blocked");
                         break;
                     }
 
